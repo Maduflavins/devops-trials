@@ -1,0 +1,44 @@
+#version: '3'
+#
+#services:
+#    db:
+#        image: postgres
+#        environment:
+#            - POSTGRES_DB=${POSTGRES_DB}
+#            - POSTGRES_USERNAME=${POSTGRES_USER}
+#            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+##    migration:
+##        build: .
+##        command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py migrate'
+##        volumes:
+##            - .:/usr/src/app
+##        depends_on:
+##            - db
+#    web:
+#        build: ..
+##        container_name: reeach-backend
+#        image: reeach-backend
+#        command:
+##           - bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py migrate'
+#           - bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py runserver 0.0.0.0:8000'
+#        volumes:
+#            - .:/usr/src/app
+#        ports:
+#            - "8000:8000"
+#        depends_on:
+#            - db
+##            - migration
+#
+
+
+
+version: "3"
+
+services:
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/application
+    ports:
+      - "8000:8000"
