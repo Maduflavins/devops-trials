@@ -13,7 +13,7 @@ node {
       parallel 'build-image':{
         sh "docker build -t ${env.BUILD_TAG} ."
       }, 'run-test-environment': {
-        sh "docker-compose --project-name myapp up -d"
+        sh "docker-compose --project-name projectdevops-staging up -d"
       }
     }
 
@@ -26,7 +26,7 @@ node {
     stage('Deploy - Staging') {
       // TODO. Use env.BRANCH_NAME to make sure we only deploy from staging
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Heroku Git Login', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
-         sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/myapp-staging.git staging')
+         sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/projectdevops-staging-project-devop.git staging')
       }
       setBuildStatus("Staging build complete", "SUCCESS");
     }
@@ -44,7 +44,7 @@ node {
         }
       // TODO. Use env.BRANCH_NAME to make sure we only deploy from master
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Heroku Git Login', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
-       sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/myapp-production.git HEAD:refs/heads/master')
+       sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/projectdevops-project-devop-production.git HEAD:refs/heads/master')
     }
     setBuildStatus("Production build complete", "SUCCESS");
   } catch(error){
