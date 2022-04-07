@@ -1,5 +1,5 @@
 
-FROM python:3.6.7-alpine
+FROM python:3.11.0a7-alpine
 ENV PYTHONUNBUFFERED 1
 RUN apk update && \
     apk add --virtual build-deps gcc python-dev musl-dev && \
