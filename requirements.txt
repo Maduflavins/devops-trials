@@ -33,3 +33,4 @@ uritemplate==3.0.1
 urllib3==1.25.10
 whitenoise==5.2.0
 zipp==3.1.0
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
