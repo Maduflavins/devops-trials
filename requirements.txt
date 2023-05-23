@@ -24,7 +24,7 @@ packaging==20.4
 pyparsing==2.4.7
 python-decouple==3.3
 pytz==2020.1
-requests==2.24.0
+requests==2.31.0
 ruamel.yaml==0.16.12
 ruamel.yaml.clib==0.2.2
 six==1.15.0
